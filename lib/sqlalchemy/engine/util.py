@@ -101,7 +101,7 @@ class TransactionalContext:
                     "Can't operate on closed transaction inside context "
                     "manager.  Please complete the context manager "
                     "before emitting further commands."
-                )
+                ) from subject.transaction._rollback_exception
 
     def __enter__(self) -> Self:
         subject = self._get_subject()
